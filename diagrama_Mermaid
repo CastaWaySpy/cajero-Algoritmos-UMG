@@ -1,0 +1,24 @@
+flowchart TD
+    A[INICIO] --> B[Definir saldo = 2000<br/>Definir montoRetiro]
+    B --> C[Mostrar: CAJERO AUTOMÁTICO 5B JALAPA<br/>Saldo disponible: Q2000]
+    C --> D[Solicitar: Ingrese monto a retirar]
+    D --> E[Leer montoRetiro]
+    E --> F{montoRetiro <= 0?}
+    
+    F -->|SI| G[Mostrar: ERROR<br/>El monto debe ser mayor que cero]
+    F -->|NO| H{montoRetiro <= saldo?}
+    
+    H -->|SI| I[saldo = saldo - montoRetiro]
+    H -->|NO| J[Mostrar: FONDOS INSUFICIENTES<br/>Monto solicitado: Q montoRetiro<br/>Saldo disponible: Q saldo<br/>No se puede realizar la transacción]
+    
+    I --> K[Mostrar: RETIRE SU DINERO<br/>Monto retirado: Q montoRetiro<br/>Saldo restante: Q saldo<br/>Gracias por usar nuestro cajero 5B]
+    
+    G --> L[FIN]
+    J --> L
+    K --> L
+
+    class A,L startEnd
+    class B,I process
+    class F,H decision
+    class C,D,K output
+    class G,J error
